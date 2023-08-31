@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "2691c549-e1bf-4837-808d-8f6d61769eda",
+		"name": "OneFin API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19728015",
+		"_collection_link": "https://www.postman.com/dark-sunset-286567/workspace/onefin-assignment/collection/19728015-2691c549-e1bf-4837-808d-8f6d61769eda?action=share&source=collection_link&creator=19728015"
+	},
+	"item": [
+		{
+			"name": "Login_API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(responseBody, function () {",
+							"    pm.response.to.have.status(200);",
+							"    var json = JSON.parse(responseBody);",
+							"    ",
+							"    pm.environment.set(\"auth_token\", json.data.token);",
+							"    ",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\": \"{{username}}\",\n \"password\": \"{{password}}\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/v1/usermodule/login/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"usermodule",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Movie API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/v1/maya/movies/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"maya",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
